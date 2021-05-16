@@ -15,8 +15,8 @@ const UserScreen = () => {
 const getUser=()=>{
     axios.get(`https://reqres.in/api/users/${id}`).
     then((response)=>{
-        console.log("response",response.data.data)
-        setUser(response.data)
+        console.log("response",response.data.data.avatar)
+        setUser(response.data.data)
     }).catch((error)=>{
         console.log("error",error)
     })
@@ -27,10 +27,7 @@ const getUser=()=>{
         <div class="card">
            
          <div class="banner" 
-        //  style={{
       
-        //   backgroundImage: `url(${ContactBanner})`,
-        // }} 
         >
            
         </div>
@@ -39,10 +36,10 @@ const getUser=()=>{
         <div class="avatar"
         style={{
       
-               backgroundImage: `url(${user.avatar})`,
+               backgroundImage: `url(${user?user.avatar:""})`,
              }} ></div>
-         <h3>{user.first_name} {user.last_name}</h3>
-           {/* <p>{user.support.text}</p> */}
+         <h3>{user?user.first_name:""} {user?user.last_name:""}</h3>
+            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p> 
            <div className="d-flex align-items-center justify-content-around">
               <h5><HiOutlineLocationMarker className="mx-3"/>location</h5>
             <a href = "mailto: abc@example.com" > <h5><AiOutlineMail className="mx-3"/> Send Mail</h5> </a> 
